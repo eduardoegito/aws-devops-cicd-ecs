@@ -23,12 +23,12 @@ export TF_VAR_codecommit_repo_default_branch_name="main"
 case ${command} in
     plan )
        terraform init
-       terraform plan -no-color -out latest-${TF_VAR_project_name}.tfplan
+       terraform plan -no-color -out latest-"${TF_VAR_project_name}".tfplan
        ;;
     apply )
        terraform init
-       terraform apply -no-color latest-${TF_VAR_project_name}.tfplan
-       rm latest-${TF_VAR_project_name}.tfplan
+       terraform apply -no-color latest-"${TF_VAR_project_name}".tfplan
+       rm latest-"${TF_VAR_project_name}".tfplan
        ;;
     init )
        terraform init
@@ -39,12 +39,12 @@ case ${command} in
        ;;
     show )
        terraform init
-       terraform show -no-color latest-${TF_VAR_project_name}.tfplan
+       terraform show -no-color latest-"${TF_VAR_project_name}".tfplan
        ;;
     nothing )
       echo "nothing done"
       ;;
     * )
-       terraform ${command} -no-color
+       terraform "${command}" -no-color
        ;;
 esac
