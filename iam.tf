@@ -65,8 +65,8 @@ data "aws_iam_policy_document" "codebuild_service_role_policy" {
     sid     = "CodeBuildAccessToS3"
     effect  = "Allow"
     resources = [
-      data.aws_s3_bucket.codepipeline_artifacts_s3_bucket.arn,
-      "${data.aws_s3_bucket.codepipeline_artifacts_s3_bucket.arn}/*"
+      aws_s3_bucket.project_s3_codepipeline_artifacts.arn,
+      "${aws_s3_bucket.project_s3_codepipeline_artifacts.arn}/*"
     ]
     actions = [
       "s3:GetObject",
@@ -125,8 +125,8 @@ data "aws_iam_policy_document" "codepipeline_policy" {
       "s3:PutObject"
     ]
     resources = [
-      data.aws_s3_bucket.codepipeline_artifacts_s3_bucket.arn,
-      "${data.aws_s3_bucket.codepipeline_artifacts_s3_bucket.arn}/*"
+      aws_s3_bucket.project_s3_codepipeline_artifacts.arn,
+      "${aws_s3_bucket.project_s3_codepipeline_artifacts.arn}/*"
     ]
   }
   statement {
@@ -311,7 +311,7 @@ data "aws_iam_policy_document" "codedeploy" {
       "s3:PutObjectAcl",
       "s3:PutObject"
     ]
-    resources = ["${data.aws_s3_bucket.codepipeline_artifacts_s3_bucket.arn}/*"]
+    resources = ["${aws_s3_bucket.project_s3_codepipeline_artifacts.arn}/*"]
   }
   statement {
     sid    = "AllowKMS"

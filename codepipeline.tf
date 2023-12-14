@@ -6,7 +6,7 @@ resource "aws_codepipeline" "imagebuild_pipeline" {
   name     = var.codepipeline_pipeline_name
   role_arn = aws_iam_role.codepipeline_role.arn
   artifact_store {
-    location = data.aws_s3_bucket.codepipeline_artifacts_s3_bucket.id
+    location = aws_s3_bucket.project_s3_codepipeline_artifacts.id
     type     = "S3"
 
     encryption_key {
